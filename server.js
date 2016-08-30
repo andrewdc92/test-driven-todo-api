@@ -64,10 +64,24 @@ app.post('/api/todos', function create(req, res) {
 });
 
 app.get('/api/todos/:id', function show(req, res) {
+      console.log(req.params)
+      var inputs = parseInt(req.params.id);
+
+      var result = todos.filter(function(todo){return todo._id == inputs})[0];
+
+      return res.json(result);
+});
+
+      // res.json({todos}).find(function(todos){
+      //   return todos.find._id[0];
+      // })
+    //  res.status(200).json({todos}).find.id[1];
+  // res.status(200).json({todos})._id[todos];
+
   /* This endpoint will return a single todo with the
    * id specified in the route parameter (:id)
    */
-});
+
 
 app.put('/api/todos/:id', function update(req, res) {
   /* This endpoint will update a single todo with the
