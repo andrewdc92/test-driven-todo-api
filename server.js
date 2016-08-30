@@ -15,9 +15,9 @@ app.use(express.static(__dirname + '/public'));
 
 // our database is an array for now with some hardcoded values
 var todos = [
-  // { _id: 7, task: 'Laundry', description: 'Wash clothes' },
-  // { _id: 27, task: 'Grocery Shopping', description: 'Buy dinner for this week' },
-  // { _id: 44, task: 'Homework', description: 'Make this app super awesome!' }
+   { _id: 7, task: 'Laundry', description: 'Wash clothes' },
+   { _id: 27, task: 'Grocery Shopping', description: 'Buy dinner for this week' },
+   { _id: 44, task: 'Homework', description: 'Make this app super awesome!' }
 ];
 
 /**********
@@ -28,9 +28,9 @@ var todos = [
  * HTML Endpoints
  */
 
-app.get('/', function homepage(req, res) {
-  res.sendFile(__dirname + '/views/index.html');
-});
+ app.get('/', function homepage(req, res) {
+   res.sendFile(__dirname + '/views/index.html');
+ });
 
 
 /*
@@ -47,9 +47,12 @@ app.get('/api/todos/search', function search(req, res) {
   /* This endpoint responds with the search results from the
    * query in the request. COMPLETE THIS ENDPOINT LAST.
    */
+
 });
 
 app.get('/api/todos', function index(req, res) {
+  res.status(200).json({todos});
+  // console.log(statusCode);
   /* This endpoint responds with all of the todos
    */
 });
@@ -85,6 +88,7 @@ app.delete('/api/todos/:id', function destroy(req, res) {
  **********/
 
 // listen on port 3000
-app.listen(3000, function() {
+var port = 3000
+app.listen(port, function() {
   console.log('Server running on http://localhost:3000');
 });
