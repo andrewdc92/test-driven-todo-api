@@ -57,11 +57,28 @@ app.get('/api/todos', function index(req, res) {
    */
 });
 
-app.post('/api/todos', function create(req, res) {
+app.post('/api/todos', function create(request, res) {
+    var id = todos[todos.length-1]._id+1;
+    var task = request.body.task;
+    var description = request.body.description;
+    var newTodo = {_id : id, task: task, description: description};
+
+     todos.push(newTodo);
+     res.json(newTodo);
+});
+    // req.body(newTodo);
+    // return res.json(newTodo);
+
   /* This endpoint will add a todo to our "database"
    * and respond with the newly created todo.
+   POST /api/todos (create)
+     ✓ should respond with status 200 - Success
+     ✓ should respond with JSON
+     ✓ should respond with the new todo object
+     ✓ should assign an _id to the new todo object
+     ✓ should increment the _id number by one each time a todo is created
    */
-});
+
 
 app.get('/api/todos/:id', function show(req, res) {
       console.log(req.params)
